@@ -5,6 +5,12 @@ RUN pip install uwsgi
 # Set up Nginx
 ENV NGINX_VERSION 1.9.11-1~jessie
 
+RUN rm /etc/apt/sources.list
+RUN echo "deb http://archive.debian.org/debian/ jessie main" | tee -a /etc/apt/sources.list
+RUN echo "deb-src http://archive.debian.org/debian/ jessie main" | tee -a /etc/apt/sources.list
+RUN echo "Acquire::Check-Valid-Until false;" | tee -a /etc/apt/apt.conf.d/10-nocheckvalid
+RUN echo 'Package: *\nPin: origin "archive.debian.org"\nPin-Priority: 500' | tee -a /etc/apt/preferences.d/10-archive-pin
+
 RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
 	&& echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list \
 	&& apt-get update \
@@ -36,24 +42,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./app /app
 WORKDIR /app
 
-CMD ["/usr/bin/supervisord"]
-
-#########################################
-
-RUN pip install flask
-COPY nginx.conf /etc/nginx/conf.d/
-
 COPY requirements.txt /tmp/
 
 RUN pip install -U pip
 RUN pip install -r /tmp/requirements.txt
 
-RUN apt-get install curl
-RUN curl -sL https://deb.nodesource.com/setup_6.x | bash
-RUN apt-get install nodejs
-RUN npm install
-RUN npm install --save reactstrap@next react react-dom 
-RUN npm install bootstrap reactstrap@next react-router-dom	
-
-COPY ./app /app
-
+CMD ["/usr/bin/supervisord"]
