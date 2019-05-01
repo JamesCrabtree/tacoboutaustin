@@ -2,7 +2,7 @@
 FROM node 
 
 # specifies production or testing mode API URL
-ENV API_URL = "api.tacoboutaustin.me"
+ENV API_URL = "localhost"
 
 # less messages during Docker build
 ENV NPM_CONFIG_LOGLEVEL warn 
