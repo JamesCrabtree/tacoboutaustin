@@ -20,7 +20,7 @@ services:
     build:
       image name: us.gcr.io/my-project-1518483136546/taco-backend
       path: Dockerfile
-      version: 1.0.0
+      version: 1.0.1
     test:
       command: python tests.py
       image name: taco-backend-test
