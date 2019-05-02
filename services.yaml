@@ -1,0 +1,27 @@
+services:
+  frontend:
+    path: 'app/frontend'
+    artifact type: docker
+    upload type: gcr
+    language: nodejs
+    build:
+      image name: us.gcr.io/my-project-1518483136546/taco-frontend
+      path: Dockerfile
+      version: 1.0.0
+    test:
+      command: npm run test
+      image name: taco-frontend-test
+      path: Dockerfile.test
+  backend:
+    path: 'app/backend'
+    artifact type: docker
+    upload type: gcr
+    language: python
+    build:
+      image name: us.gcr.io/my-project-1518483136546/taco-backend
+      path: Dockerfile
+      version: 1.0.0
+    test:
+      command: python tests.py
+      image name: taco-backend-test
+      path: Dockerfile.test
