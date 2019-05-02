@@ -27,7 +27,7 @@ gui_testing:
 
 travis:
 	cd app/frontend/guitests; make travis
-	cd app; make travis
+	cd app/backend; make travis
 	@echo
 
 production_back:
