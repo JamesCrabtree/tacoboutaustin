@@ -1,0 +1,6 @@
+FROM us.gcr.io/my-project-1518483136546/taco-frontend
+ENV NODE_ENV dev
+RUN npm update && \
+    npm install -g mocha
+
+CMD ["npm", "run", "test"]

@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha -w --require ignore-styles tests/helpers/browser.js tests/*.spec.js",
+    "test": "mocha --require ignore-styles tests/helpers/browser.js tests/*.spec.js",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
