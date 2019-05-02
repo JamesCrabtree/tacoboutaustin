@@ -1,6 +1,6 @@
 services:
   frontend:
-    path: 'app/frontend'
+    path: app/frontend
     artifact type: docker
     upload type: gcr
     language: nodejs
@@ -13,7 +13,7 @@ services:
       image name: taco-frontend-test
       path: Dockerfile.test
   backend:
-    path: 'app/backend'
+    path: app/backend
     artifact type: docker
     upload type: gcr
     language: python
