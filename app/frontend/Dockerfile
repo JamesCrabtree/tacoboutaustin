@@ -20,7 +20,7 @@ RUN mkdir -p /app
 WORKDIR /app          
 
 # copy code in local frontend directory into container's working directory
-COPY ./app /app    
+COPY . /app    
 WORKDIR /app/frontend   
 
 # install dependencies
