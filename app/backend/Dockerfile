@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y supervisor \
 # Custom Supervisord config
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-COPY ./app /app
+COPY ./app/backend /app
 WORKDIR /app
 
 COPY requirements.txt /tmp/
