@@ -19,60 +19,60 @@ API_URL = "http://api.tacoboutaustin.me/"
 
 class TestApi(TestCase):
 
-    def test_message_restaurant(self):
-        response = requests.get(API_URL + "restaurants")
-        #print(response.json())
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_restaurant(self):
+    #     response = requests.get(API_URL + "restaurants")
+    #     #print(response.json())
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_hotel(self):
-        response = requests.get(API_URL + "hotels")
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_hotel(self):
+    #     response = requests.get(API_URL + "hotels")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_attraction(self):
-        response = requests.get(API_URL + "attractions")
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_attraction(self):
+    #     response = requests.get(API_URL + "attractions")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_restaurant_id_1(self):
-        response = requests.get(API_URL + "restaurants/0")
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_restaurant_id_1(self):
+    #     response = requests.get(API_URL + "restaurants/0")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_restaurant_id_2(self):
-        response = requests.get(API_URL + "restaurants/201") # invalid id
-        status = response.json()['status']
-        self.assertEqual(response.ok, False)
-        self.assertEqual(status, "INVALID_ID")
+    # def test_message_restaurant_id_2(self):
+    #     response = requests.get(API_URL + "restaurants/201") # invalid id
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, False)
+    #     self.assertEqual(status, "INVALID_ID")
 
-    def test_message_hotel_id_1(self):
-        response = requests.get(API_URL + "hotels/0")
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_hotel_id_1(self):
+    #     response = requests.get(API_URL + "hotels/0")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_hotel_id_2(self):
-        response = requests.get(API_URL + "hotels/201")
-        status = response.json()['status']
-        self.assertEqual(response.ok, False)
-        self.assertEqual(status, "INVALID_ID")
+    # def test_message_hotel_id_2(self):
+    #     response = requests.get(API_URL + "hotels/201")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, False)
+    #     self.assertEqual(status, "INVALID_ID")
 
-    def test_message_attraction_id_1(self):
-        response = requests.get(API_URL + "attractions/1")
-        status = response.json()['status']
-        self.assertEqual(response.ok, True)
-        self.assertEqual(status, "OK")
+    # def test_message_attraction_id_1(self):
+    #     response = requests.get(API_URL + "attractions/1")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, True)
+    #     self.assertEqual(status, "OK")
 
-    def test_message_attraction_id_2(self):
-        response = requests.get(API_URL + "attractions/201")
-        status = response.json()['status']
-        self.assertEqual(response.ok, False)
-        self.assertEqual(status, "INVALID_ID")
+    # def test_message_attraction_id_2(self):
+    #     response = requests.get(API_URL + "attractions/201")
+    #     status = response.json()['status']
+    #     self.assertEqual(response.ok, False)
+    #     self.assertEqual(status, "INVALID_ID")
 
     def test_close_by_1(self):
         restaurant_1 = Restaurant.query.filter_by(restaurant_id = 1).first()
