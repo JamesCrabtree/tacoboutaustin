@@ -6,7 +6,7 @@ from copy import copy
 from models import Place, Restaurant, Hotel, Image, Review, Attraction, Category, Hour, Zipcode, Association, Distance
 
 def test1():
-    """restaurants = Restaurant.query.all() 
+    """restaurants = Restaurant.query.all()
     for restaurant in restaurants:
         print(restaurant.name)
         for hour in restaurant.hours:
