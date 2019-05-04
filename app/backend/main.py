@@ -21,7 +21,7 @@ from flask_sqlalchemy import SQLAlchemy
 # append path BASE_DIR to parksrus-frontend/build to get absolute path
 # REACT_FILES = os.path.join(BASE_DIR, 'frontend/build')
 
-app = Flask(__name__) 
+app = Flask(__name__)
 CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///idb.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
