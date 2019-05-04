@@ -1,6 +1,6 @@
 pipeline {
   agent {
-    label "jenkins-taco"
+    label "jenkins-monoci"
   }
   environment {
     ORG = 'jamescrabtree'
@@ -42,7 +42,6 @@ pipeline {
       steps {
         container('monoci') {
           
-          }
         }
       }
     }
