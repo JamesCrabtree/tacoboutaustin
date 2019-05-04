@@ -16,7 +16,7 @@ from main import app, db
 class Image(db.Model):
     __tablename__ = "images"
     id = db.Column(db.Integer, primary_key=True)
-    image_url = db.Column(db.String(200))
+    image_url = db.Column(db.String(200)) 
 
     place_id = db.Column(db.Integer, db.ForeignKey('place.id'), nullable=True)
     place = db.relationship('Place', backref=db.backref('images',lazy=True, cascade= "all, delete-orphan"))
