@@ -6,8 +6,12 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: taco-ip
 spec:
   backend:
-    serviceName: frontend-deployment
-    servicePort: 3000
-  backend:
     serviceName: backend-deployment
     servicePort: 80
+  rules:
+  - http:
+      paths:
+      - path: /frontend
+        backend:
+          serviceName: frontend-deployment
+          servicePort: 3000
