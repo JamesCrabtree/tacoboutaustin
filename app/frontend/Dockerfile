@@ -14,14 +14,11 @@ ARG app_env
 ENV APP_ENV $app_env         
 
 # creates folder to add code into
-RUN mkdir -p /app   
-
-# all commands will be run from this folder now
-WORKDIR /app          
+RUN mkdir -p /app      
 
 # copy code in local frontend directory into container's working directory
 COPY . /app    
-WORKDIR /app/frontend   
+WORKDIR /app 
 
 # install dependencies
 RUN npm install

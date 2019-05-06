@@ -4,4 +4,4 @@ npm run build
 cd ..
 rm -rf static
 mkdir static
-cp -a frontend/build/static/* static
+cp -a build/static/* static
