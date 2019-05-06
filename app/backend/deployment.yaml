@@ -18,4 +18,4 @@ spec:
         - name: backend
           image: us.gcr.io/my-project-1518483136546/taco-backend:latest
           ports:
-          - containerPort: 80 
+          - containerPort: 80
