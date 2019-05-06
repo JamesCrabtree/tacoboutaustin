@@ -1,5 +1,5 @@
 #start from node base image
-FROM node 
+FROM node as react-build
 
 # specifies production or testing mode API URL
 ENV API_URL = "localhost"
@@ -29,17 +29,26 @@ RUN npm install --save-dev mocha
 # If the arg_env was set as production, then this will install http-server and build/service optimized static files
 # Otherwise, uses create-react-app's hot reloading tool
 
-RUN npm install -g react-scripts
-# RUN npm run start
-CMD if [ ${APP_ENV} = production ]; \
-	then \
-	npm install -g http-server && \
-	npm run build && \
-	cd build && \
-	hs -p 3000; \
-	else \
-	npm run start; \
-	fi
+# RUN npm install -g react-scripts
+# # RUN npm run start
+# CMD if [ ${APP_ENV} = production ]; \
+# 	then \
+# 	npm install -g http-server && \
+# 	npm run build && \
+# 	cd build && \
+# 	hs -p 3000; \
+# 	else \
+# 	npm run start; \
+# 	fi
 
-# app runs on port 3000 by default
-EXPOSE 3000
+# # app runs on port 3000 by default
+# EXPOSE 3000
+
+
+RUN npm run build
+
+FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=react-build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
