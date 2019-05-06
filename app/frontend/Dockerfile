@@ -1,5 +1,5 @@
 #start from node base image
-FROM node as react-build
+FROM node
 
 # less messages during Docker build
 ENV NPM_CONFIG_LOGLEVEL warn 
@@ -40,6 +40,6 @@ RUN npm run build
 
 FROM nginx:alpine
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=react-build /app/build /usr/share/nginx/html
+COPY --from=node /app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
