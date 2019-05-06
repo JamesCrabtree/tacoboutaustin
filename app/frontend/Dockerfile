@@ -1,17 +1,8 @@
 #start from node base image
 FROM node as react-build
 
-# specifies production or testing mode API URL
-ENV API_URL = "localhost"
-
 # less messages during Docker build
 ENV NPM_CONFIG_LOGLEVEL warn 
-
-# Allows app_env to be set during build (defaults to empty string)
-ARG app_env                  
-
-# sets an environment variable to app_env argument, so that variable will persist in container for use in node
-ENV APP_ENV $app_env         
 
 # creates folder to add code into
 RUN mkdir -p /app      
