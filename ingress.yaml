@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: taco-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: taco-ip
+spec:
+  backend:
+    serviceName: frontend-deployment
+    servicePort: 3000
+  backend:
+    serviceName: backend-deployment
+    servicePort: 80
