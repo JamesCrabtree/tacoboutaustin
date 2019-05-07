@@ -41,26 +41,20 @@ pipeline {
       }
       steps {
         container('monoci') {
-          script {
             sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
 
-            if(env.frontend == 'SUCCESS' || env.backend == 'SUCCESS') {
-              if(env.frontend == 'SUCCESS') {
-                sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
-                sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
-                sh "kubectl create -f frontend-deployment.yaml"
-                sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
-              }
-              if(env.backend == 'SUCCESS') {
-                sh "kubectl delete deployment backend-deployment || echo 'backend-deployment deployment does not exist'"
-                sh "kubectl delete service backend-deployment || echo 'backend-deployment service does not exist'"
-                sh "kubectl create -f backend-deployment.yaml"
-                sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
-              }
+            sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
+            sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
+            sh "kubectl create -f frontend-deployment.yaml"
+            sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
 
-              sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
-              sh "kubectl apply -f ingress.yaml"
-            }
+            sh "kubectl delete deployment backend-deployment || echo 'backend-deployment deployment does not exist'"
+            sh "kubectl delete service backend-deployment || echo 'backend-deployment service does not exist'"
+            sh "kubectl create -f backend-deployment.yaml"
+            sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
+
+            sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
+            sh "kubectl apply -f ingress.yaml"
           }
         }
       }
