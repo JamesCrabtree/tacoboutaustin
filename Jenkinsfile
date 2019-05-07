@@ -55,7 +55,6 @@ pipeline {
 
             sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
             sh "kubectl apply -f ingress.yaml"
-          }
         }
       }
     }
