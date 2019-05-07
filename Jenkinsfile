@@ -46,12 +46,12 @@ pipeline {
 
             sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
             sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
-            sh "kubectl create -f deployment.yaml"
+            sh "kubectl create -f app/frontend/deployment.yaml"
             sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
 
             sh "kubectl delete deployment backend-deployment || echo 'backend-deployment deployment does not exist'"
             sh "kubectl delete service backend-deployment || echo 'backend-deployment service does not exist'"
-            sh "kubectl create -f deployment.yaml"
+            sh "kubectl create -f app/backend/deployment.yaml"
             sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
 
             sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
