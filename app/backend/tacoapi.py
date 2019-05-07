@@ -263,7 +263,7 @@ def getOne(id, type):
     close_by_type2 = "close_by_" + type2 + "s"
     return place_data, close_by_type1, type1_place, close_by_type2, type2_place
 
-@app.route('/api')
+@app.route('/')
 def hello_user():
     return render_template('hello.html')
 
