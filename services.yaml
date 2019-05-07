@@ -7,7 +7,7 @@ services:
     build:
       image name: us.gcr.io/my-project-1518483136546/taco-frontend
       path: Dockerfile
-      version: 1.0.65
+      version: 1.0.66
     test:
       command: npm run test
       image name: taco-frontend-test
@@ -20,7 +20,7 @@ services:
     build:
       image name: us.gcr.io/my-project-1518483136546/taco-backend
       path: Dockerfile
-      version: 1.0.64
+      version: 1.0.65
     test:
       command: python tests.py
       image name: taco-backend-test
