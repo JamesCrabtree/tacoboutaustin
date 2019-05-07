@@ -295,7 +295,7 @@ def get_hotel(id):
     if type1 is not None:
         return jsonify({'status': "OK", 'hotel': hotel_data, type1: type1_place, type2: type2_place})
     else:
-        return hotel_data
+        return hotel_data 
 
 @app.route('/api/attractions')
 def get_attractions():
