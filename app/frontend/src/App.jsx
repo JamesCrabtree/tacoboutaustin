@@ -9,7 +9,7 @@ import Router from './Router';
 import { Container, Row, Col } from 'reactstrap'
 
 
-class App extends Component { 
+class App extends Component {
   render() {
     return (
     	<div>
