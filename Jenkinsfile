@@ -41,8 +41,7 @@ pipeline {
       }
       steps {
         container('monoci') {
-          sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
-          sh "gcloud config list"
+          // sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
 
           sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
           sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
