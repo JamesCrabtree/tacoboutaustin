@@ -40,21 +40,23 @@ pipeline {
         branch 'master'
       }
       steps {
-        // sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
-        sh "kubectl config use-context gke_my-project-1518483136546_us-central1-f_tacocluster"
+        container('monoci') {
+          sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
+          // sh "kubectl config use-context gke_my-project-1518483136546_us-central1-f_tacocluster"
 
-        sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
-        sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
-        sh "kubectl create -f app/frontend/deployment.yaml"
-        sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
+          sh "kubectl delete deployment frontend-deployment || echo 'frontend-deployment deployment does not exist'"
+          sh "kubectl delete service frontend-deployment || echo 'frontend-deployment service does not exist'"
+          sh "kubectl create -f app/frontend/deployment.yaml"
+          sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
 
-        sh "kubectl delete deployment backend-deployment || echo 'backend-deployment deployment does not exist'"
-        sh "kubectl delete service backend-deployment || echo 'backend-deployment service does not exist'"
-        sh "kubectl create -f app/backend/deployment.yaml"
-        sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
+          sh "kubectl delete deployment backend-deployment || echo 'backend-deployment deployment does not exist'"
+          sh "kubectl delete service backend-deployment || echo 'backend-deployment service does not exist'"
+          sh "kubectl create -f app/backend/deployment.yaml"
+          sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
 
-        sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
-        sh "kubectl apply -f ingress.yaml"
+          sh "kubectl delete ingress taco-ingress || echo 'taco-ingress does not exist'"
+          sh "kubectl apply -f ingress.yaml"
+        }
       }
     }
   }
