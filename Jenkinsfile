@@ -42,7 +42,7 @@ pipeline {
       steps {
         container('monoci') {
           script {
-            sh "gcloud container clusters get-credentials tacocluster"
+            sh "gcloud container clusters get-credentials tacocluster --zone us-central1-f"
 
             if(env.frontend == 'SUCCESS' || env.backend == 'SUCCESS') {
               if(env.frontend == 'SUCCESS') {
