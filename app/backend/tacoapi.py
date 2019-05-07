@@ -200,7 +200,8 @@ def getList(args, type):
         place_data = {}
         place_data['id'] = getIdType(place, type)
         place_data['name'] = place.name
-        place_data['image'] = 'https://static.comicvine.com/uploads/square_medium/11/111746/4684849-latest.jpg'
+        place_data['image'] = place.cover_image
+        # place_data['image'] = https://static.comicvine.com/uploads/square_medium/11/111746/4684849-latest.jpg
         place_data['rating'] = place.rating
         place_data['address'] = [place.address1, place.address2]
         place_data['zip_code'] = place.zipcode
