@@ -263,16 +263,16 @@ def getOne(id, type):
     close_by_type2 = "close_by_" + type2 + "s"
     return place_data, close_by_type1, type1_place, close_by_type2, type2_place
 
-@app.route('/')
+@app.route('/api')
 def hello_user():
     return render_template('hello.html')
 
-@app.route('/restaurants')
+@app.route('/api/restaurants')
 def get_restaurants():
     output = getList(request.args, "restaurant")
     return jsonify({'status': "OK", 'list': output, 'total': len(output)})
 
-@app.route('/restaurants/<id>')
+@app.route('/api/restaurants/<id>')
 def get_restaurant(id):
     restaurant_data, type1, type1_place, type2, type2_place = getOne(id, "restaurant")
 
@@ -282,13 +282,13 @@ def get_restaurant(id):
         return restaurant_data
 
 
-@app.route('/hotels')
+@app.route('/api/hotels')
 def get_hotels():
     output = getList(request.args, "hotel")
     return jsonify({'status': "OK", 'list': output, 'total': len(output)})
 
 
-@app.route('/hotels/<id>')
+@app.route('/api/hotels/<id>')
 def get_hotel(id):
     hotel_data, type1, type1_place, type2, type2_place = getOne(id, "hotel")
     
@@ -297,12 +297,12 @@ def get_hotel(id):
     else:
         return hotel_data
 
-@app.route('/attractions')
+@app.route('/api/attractions')
 def get_attractions():
     output = getList(request.args, "attraction")
     return jsonify({'status': "OK", 'list': output, 'total': len(output)})
 
-@app.route('/attractions/<id>')
+@app.route('/api/attractions/<id>')
 def get_attraction(id):
     attraction_data, type1, type1_place, type2, type2_place = getOne(id, "attraction")
     if type1 is not None:
@@ -310,7 +310,7 @@ def get_attraction(id):
     else:
         return attraction_data
 
-@app.route('/categories')
+@app.route('/api/categories')
 def get_categories():
     query_string = "SELECT category.*, COUNT(place.id) as Count FROM category inner join association on category.id = association.category_id inner join place on place.id = association.place_id"
     type = request.args.get('type', default=None, type=str)
@@ -327,7 +327,7 @@ def get_categories():
         output.append(category_data)
     return jsonify({'status': "OK", 'categories': output, 'total': len(output)})
 
-@app.route('/zipcodes')
+@app.route('/api/zipcodes')
 def get_zipcodes():
     type = request.args.get('type', default=None, type=str)
     query_string = "SELECT zipcode.*, COUNT(place.id) as Count FROM zipcode inner join place on place.zipcode = zipcode.value"
