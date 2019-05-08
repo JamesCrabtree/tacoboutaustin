@@ -42,10 +42,12 @@ pipeline {
       steps {
         container('monoci') {
           sh "kubectl replace -f app/frontend/deployment.yaml"
-          sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort"
+          sh "kubectl expose deployment frontend-deployment --target-port=3000 --type=NodePort \
+              || echo 'frontend-deployment service already exposed'"
 
           sh "kubectl replace -f app/backend/deployment.yaml"
-          sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort"
+          sh "kubectl expose deployment backend-deployment --target-port=80 --type=NodePort \
+              || echo 'backend-deployment service already exposed'"
 
           sh "kubectl apply -f ingress.yaml"
         }
