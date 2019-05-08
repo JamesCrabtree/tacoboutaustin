@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: us.gcr.io/my-project-1518483136546/taco-frontend:latest
+        image: us.gcr.io/my-project-1518483136546/taco-frontend
         ports:
         - containerPort: 3000
 
