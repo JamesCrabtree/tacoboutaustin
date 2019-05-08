@@ -266,7 +266,7 @@ def getOne(id, type):
 
 @app.route('/')
 def hello_user():
-    return render_template('hello.html')
+    return render_template('hello.html') 
 
 @app.route('/api/restaurants')
 def get_restaurants():

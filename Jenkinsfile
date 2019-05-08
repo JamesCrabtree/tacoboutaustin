@@ -41,7 +41,7 @@ pipeline {
       }
       steps {
         container('monoci') {
-          sh "python scripts/deploy.py"
+          sh "python3.6 scripts/deploy.py"
         }
       }
     }
