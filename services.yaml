@@ -1,4 +1,4 @@
-head: 6c2ffd132de06178555b98cc25fb922148c2796b
+head: 9a25cbc86b9a86e3c41f0efb27342c0ddc885e02
 services:
   frontend:
     path: app/frontend
@@ -21,7 +21,7 @@ services:
     build:
       image name: us.gcr.io/my-project-1518483136546/taco-backend
       path: Dockerfile
-      version: 1.0.19
+      version: 1.0.20
     test:
       command: python tests.py
       image name: taco-backend-test
